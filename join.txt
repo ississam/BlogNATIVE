@@ -1,0 +1,1 @@
+SELECT `title`, `contenu`,art.image,`date`, auth.fullname,cate.name FROM `article` art , auteur auth , categorie cate WHERE art.id_auteur = auth.id_auteur AND art.id_categorie = cate.id_categorie

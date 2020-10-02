@@ -1,0 +1,39 @@
+
+    if(isset($_FILES['submit'])){ 
+        $file=$_FILES['image'];
+        $file_name = $_FILES['image']['name'];
+        $file_size = $_FILES['image']['size'];
+        $file_tmp  = $_FILES['image']['tmp_name'];
+        $file_error = $_FILES['image']['error'];
+        $file_type = $_FILES['image']['type'];
+        $file_ext=explode('.',$file_name);
+        $fileActualExt= strtolower(end($file_ext));
+        $allowed= array("jpeg","jpg","png");
+        
+        if(in_array($fileActualExt,$allowed)){
+    
+            if ($file_error === 0) {
+           if ($file_size < 500000) {
+    $fileNameNew=uniqid('',true).".".$fileActualExt;
+    $fileDestination='Categorie/'.$fileNameNew;
+    move_uploaded_file($file_tmp,$fileDestination);
+    
+                     }      
+    
+                     else {
+                         echo "Your file is too big !";
+                     }
+    
+                      }
+                      else {
+                          echo " there was an error uploading your file !";
+                      }
+          
+        }
+        else {
+            echo "You cannot upload files of this type!";
+        }
+        
+      
+     }
+
